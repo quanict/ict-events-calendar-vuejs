@@ -2,7 +2,7 @@
   <div class="w-full">
     <DavidUiNavBarSTicky />
     <main class="w-full">
-      <div class="mx-auto max-w-xl">
+      <div class="container">
         <slot />
       </div>
     </main>

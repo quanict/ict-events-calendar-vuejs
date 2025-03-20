@@ -1,7 +1,7 @@
 <template>
     <li>
         <a :href="menu?.href"
-            :class="`${linkClasses} ${defaultClasses}`">
+            :class="link_class">
             <svg viewBox="0 0 24 24" class="h-4 w-4">
                 <use :href="`#${icon}`" />
             </svg>
@@ -11,8 +11,8 @@
 </template>
 <script lang="ts">
 
-import { defineComponent, defineProps } from 'vue'
-import type { PropType } from 'vue'
+import { ref,PropType, defineComponent, defineProps } from 'vue'
+import { useStore } from 'vuex';
 
 interface MenuItem {
     title: string
@@ -20,27 +20,40 @@ interface MenuItem {
     href?: string
 }
 
-const props = defineProps<{
-    menu: MenuItem,
-    classes?: string
-}>()
-
 export default defineComponent({
-    name: 'DavidUiStickyItem',
     props: {
-        menu: Object as PropType<MenuItem>,
-        linkClasses:''
+    menu: {
+      type: Object as PropType<MenuItem>,
+      // Make sure to use arrow functions if your TypeScript version is less than 4.7
+      default: () => ({
+        title: 'Arrow Function Expression'
+      }),
+      validator: (menu: MenuItem) => !!menu.title
     },
-    components: {},
-    data() {
-        return {
-            title: this.menu?.title,
-            icon: this.menu?.svg_icon,
-            defaultClasses: "font-sans antialiased text-sm text-current flex items-center gap-x-2 hover:text-primary",
-
-        }
-    },
-    created() {
+    class: {
+        type : String,
+        default : ''
     }
+  },
+  data() {
+    return {
+        anchorClass : "font-sans antialiased text-sm text-current flex items-center gap-x-2 hover:text-primary",
+        message : ''
+    }
+  },
+  computed: {
+    title(): string { return this.menu.title },
+    icon(): string { return this.menu.svg_icon },
+    link_class() : string {return `${this.anchorClass} ${this.class}`},
+    greetingUppercased: {
+      get(): string {
+        // return this.greeting.toUpperCase()
+        return ''
+      },
+      set(newValue: string) {
+        this.message = newValue.toUpperCase()
+      }
+    }
+  }
 })
 </script>

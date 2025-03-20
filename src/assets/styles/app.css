@@ -1,1 +1,97 @@
 @import "tailwindcss";
+@import url(fontawesome.css);
+
+.container {
+    @apply mx-auto w-sm xl:w-7xl lg:w-2xl;
+}
+
+.monthy-header {
+    @apply mt-10 mb-5;
+    display: flex;
+    justify-content: space-between;
+    
+    .btn-previous {
+        margin-top: 0.8rem;
+        button {
+            @apply ms-4;
+            cursor: pointer;
+            line-height: var(--text-3xl);
+            &:first-child { @apply ms-0; }
+        }
+    }
+
+    .btn-next {
+        margin-top: 0.8rem;
+        button {
+            @apply me-4;
+            cursor: pointer;
+            line-height: var(--text-3xl);
+            &:last-child { @apply me-0; }
+        }
+    }
+}
+.month_day {
+	@apply border-1 border-white p-1 h-15 align-text-top text-left relative;
+    @apply h-10 lg:h-20 xl:h-40;
+    @apply text-sm lg:text-lg xl:text-4xl;
+
+    &:hover {
+        cursor: pointer;
+        @apply border-gray-400 bg-gray-200; 
+    }
+
+    .d-sonar {
+        @apply absolute ;
+        top: 0.2rem;
+        z-index: 2;
+    }
+
+    .d-lunnar {
+        @apply absolute ;
+        bottom: 0.2rem;
+        right: 0.4rem;
+        font-size: 60%;
+        opacity: 0.5;
+        z-index: 2;
+    }
+
+    &.is_weekend { @apply  text-rose-500; }
+    &.monday_preview {
+        @apply text-gray-400;
+        &.is_weekend {
+            @apply text-rose-200;
+
+            .d-lunnar { 
+                
+                @apply  text-rose-500;
+            }
+        }
+    }
+   
+
+    .month_day_events {
+        width: 100%;
+        height: 1.5rem;
+        position: absolute;
+        z-index: 1;
+        bottom: 0;
+        left: 0;
+        margin: calc(var(--spacing)* 1);
+        @apply align-text-bottom
+    }
+    &:has(.is_japan){
+        @apply border-2;
+        @apply text-orange-400 border-orange-400;
+
+    }
+
+    &:has(.month_day_mask_dead){
+        @apply border-2;
+        @apply text-green-500 border-green-500;
+    }
+    &:has(.is_holiday){
+        @apply border-2;
+        @apply text-blue-600 border-blue-600;
+    }
+    
+}

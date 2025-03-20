@@ -10,6 +10,7 @@ https://vi.vuejs.org/v2/style-guide/#Dat-ten-component-dung-nhieu-tu-thiet-yeu
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import DavidUiLayout from '@/layouts/DavidUiLayout.vue';
+import moment from 'moment';
 
 @Options({
   components: {
@@ -18,6 +19,10 @@ import DavidUiLayout from '@/layouts/DavidUiLayout.vue';
 
   data() {
     year : 2024
+  },
+
+  created(){
+    this.year = moment().format('YYYY')
   },
 
   props: {

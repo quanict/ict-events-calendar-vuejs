@@ -9,12 +9,14 @@ const routes: Array<RouteRecordRaw> = [
     component: YearView
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/year',
+    name: 'year',
+    component: YearView
+  },
+  {
+    path: '/month',
+    name: 'month',
+    component: () => import(/* webpackChunkName: "about" */ '../views/MonthView.vue')
   }
 ]
 

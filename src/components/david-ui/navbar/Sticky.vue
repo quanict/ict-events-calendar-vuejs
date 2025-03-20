@@ -8,7 +8,7 @@
       <div class="hidden lg:block">
         <ul class="mt-4 flex flex-col gap-x-3 gap-y-1.5 lg:mt-0 lg:flex-row lg:items-center">
           <template v-for="menu, index in menus" v-bind:key="index">
-            <DavidUiStickyItem :menu="menu" linkClasses="p-1" />
+            <DavidUiStickyItem :menu="menu" classes="p-1" />
           </template>
         </ul>
       </div>
@@ -29,7 +29,7 @@
     <div class="overflow-hidden transition-[max-height] duration-300 ease-in-out" v-if="showMenu">
       <ul class="flex flex-col gap-0.5 mt-2">
         <template v-for="menu, index in menus" v-bind:key="index">
-          <DavidUiStickyItem :menu="menu" linkClasses="p-2 hover:bg-stone-100 rounded-md" />
+          <DavidUiStickyItem :menu="menu" class="p-2 hover:bg-stone-100 rounded-md" />
         </template>
 
         <li class="mt-2" v-if="showSignIn">
@@ -47,15 +47,6 @@
 import { defineComponent } from 'vue'
 import DavidUiStickyIcon from './StickyIcon.vue';
 import DavidUiStickyItem from './StickyItem.vue';
-
-
-function toggleMenuBar(event: { preventDefault: () => void; }) {
-  // now we have access to the native event
-  if (event) {
-    event.preventDefault()
-  }
-  alert("click me")
-}
 
 
 // export default class DavidUiNavBarSTicky extends Vue {}
