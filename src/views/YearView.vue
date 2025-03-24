@@ -25,16 +25,16 @@ import moment from 'moment';
     Month
   },
 
+  props: {
+    msg: { type: String, default: 'Welcome!' },
+  },
+
   data() {
     year : 2024
   },
 
   created(){
     this.year = moment().format('YYYY')
-  },
-
-  props: {
-    msg: { type: String, default: 'Welcome!' },
   },
 })
 export default class YearView extends Vue { }

@@ -10,7 +10,6 @@
             </div>
         </div>
         <div class="grid grid-cols-7 gap-4">
-            
             <template v-for="i in days">
                 <template v-if="not_current_month(i)">
                     <div v-if="is_weekend(i)" class="month_day monday_preview is_weekend">
@@ -64,6 +63,7 @@ import { ref, PropType, defineComponent, defineProps } from 'vue'
 import { Options, Vue } from 'vue-class-component';
 import moment, { Moment } from "moment";
 import { events, lunar, Lunar, toLunar } from '@/libraries';
+import MonthEvent from "@/components/MonthEvent.vue"
 
 /**
  * https://momentjs.com/docs/#/displaying/
