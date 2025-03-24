@@ -1,9 +1,3 @@
-@import "tailwindcss";
-@import url(fontawesome.css);
-
-.container {
-    @apply mx-auto w-sm xl:w-7xl lg:w-2xl;
-}
 
 .monthy-header {
     @apply mt-10 mb-5;
@@ -30,11 +24,22 @@
         }
     }
 }
+
+.month-day-name {
+    @apply border-b-2 border-gray-200 ;
+
+    .month_day_title {
+        height: var(--month-day-title-height);
+        @apply text-left;
+        &.is_weekend { @apply  text-rose-500; }
+    }
+}
+
+
 .month_day {
 	@apply border-1 border-white p-1 h-15 align-text-top text-left relative;
-    @apply h-10 lg:h-20 xl:h-40;
-    @apply text-sm lg:text-lg xl:text-4xl;
-
+    font-size: var(--month-day-font);
+    height: var(--month-day-height);
     &:hover {
         cursor: pointer;
         @apply border-gray-400 bg-gray-200; 
@@ -70,14 +75,16 @@
    
 
     .month_day_events {
+        @apply align-text-bottom;
         width: 100%;
-        height: 1.5rem;
         position: absolute;
         z-index: 1;
         bottom: 0;
         left: 0;
-        margin: calc(var(--spacing)* 1);
-        @apply align-text-bottom
+        margin: var(--month-day-event-margin);
+        height: var(--month-day-event-height);
+        font-size: var(--month-day-event-fontsize);
+
     }
     &:has(.is_japan){
         @apply border-2;
@@ -95,3 +102,4 @@
     }
     
 }
+

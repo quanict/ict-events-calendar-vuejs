@@ -12,50 +12,10 @@
 			</div>
 		</div>
 		
-
-		<div class="grid grid-cols-7 gap-4">
-		<template v-for="i in days">
-			<template v-if="not_current_month(i)">
-				<div v-if="is_weekend(i)" class="month_day monday_preview is_weekend">
-					<span class="d-sonar">{{ print_day_of_month(i) }}</span>
-					<span class="d-lunnar">{{ lunar_day_of_month(i) }}</span>
-				</div>
-				<div v-else class="month_day monday_preview ">
-					<span class="d-sonar">{{ print_day_of_month(i) }}</span>
-					<span class="d-lunnar">{{ lunar_day_of_month(i) }}</span>
-				</div>
-			</template>
-			
-			<template v-if="is_current_month(i)">
-				<div v-if="is_weekend(i)" class="month_day is_weekend">
-					<span class="d-sonar">{{ print_day_of_month(i) }}</span>
-					<span class="d-lunnar">{{ lunar_day_of_month(i) }}</span>
-				</div>
-				
-				<div v-else class="month_day">
-					<span class="d-sonar">{{ print_day_of_month(i) }}</span>
-					<span class="d-lunnar">{{ lunar_day_of_month(i) }}</span>
-					
-					<div v-if="is_japan_holiday(i)" class="month_day_events is_japan">
-						<i class="fa-duotone fa-solid fa-flower" title="japan holiday"></i>
-					</div>
-					
-					<div v-else-if="is_death_day(i)" class="month_day_events month_day_mask_dead">
-						<template v-for="dayEvent in deathDay(i)">
-							<i class="fa-duotone fa-solid fa-universal-access" :title="dayEvent.title"></i>
-						</template>
-					</div>
-					
-					<div v-else-if="is_holiday(i)" class="month_day_events is_holiday">
-						<template v-for="dayEvent in holidays(i)">
-							<i class="fa-duotone fa-solid fa-badge" :title="dayEvent.title"></i>
-						</template>
-					</div>
-					
-				</div>
-			</template>
-		</template>
+		<div class="month">
+			<Month :month="month" />
 		</div>
+		
 	</DavidUiLayout>
 </template>
 
@@ -68,11 +28,12 @@ import { Options, Vue } from 'vue-class-component';
 import DavidUiLayout from '@/layouts/DavidUiLayout.vue';
 import moment, { Moment } from "moment";
 import { events, lunar, Lunar, toLunar } from '@/libraries';
-
+import Month from "@/components/Month.vue"
 
 export default defineComponent({
 	components: {
-		DavidUiLayout
+		DavidUiLayout,
+		Month
 	},
 
 	props: {

@@ -1,0 +1,78 @@
+/**
+ * https://tailwindcss.com/docs/responsive-design
+ */
+
+/**
+ * https://tailwindcss.com/docs/font-size
+ */
+ .year {
+    --month-day-title-height: calc(var(--spacing)* 6);
+ }
+.month_day {
+    --month-day-font: var(--text-sm);
+    
+    --month-day-height: calc(var(--spacing)* 10);
+    /* --month-day-event-margin: calc(var(--spacing)* 1); */
+    /* --month-day-event-height: 1.5rem; */
+    --month-day-event-margin: 0.02rem 0.1rem;
+    --month-day-event-height: 1rem;
+    --month-day-event-fontsize : initial;
+}
+@media (width >=40rem) { /** SM */
+}
+@media (width >=48rem) { /** MD */
+    .month_day {
+        --month-day-font: var(--text-lg);
+        --month-day-height: calc(var(--spacing)* 20);
+        --month-day-event-margin: 0.02rem 0.1rem;
+        --month-day-event-height: 1rem;
+        --month-day-event-fontsize : 12px;
+    }
+
+    .year .month_day {
+        --month-day-font: calc(var(--text-lg)* 0.8);
+        --month-day-height: calc(var(--spacing)* 6);
+        --month-day-event-margin: 0.02rem 0.1rem;
+        --month-day-event-height: 0.5rem;
+        --month-day-event-fontsize : 12px;
+    }
+}
+
+@media (width >=64rem) { /** LG */
+    .month_day {
+        --month-day-font: var(--text-lg);
+        --month-day-height: calc(var(--spacing)* 20);
+        --month-day-event-margin: 0.02rem 0.1rem;
+        --month-day-event-height: 1rem;
+        --month-day-event-fontsize : 12px;
+    }
+
+    .year .month_day {
+        --month-day-font: calc(var(--text-lg)* 0.8);
+        --month-day-height: calc(var(--spacing)* 8);
+        --month-day-event-margin: 0.02rem 0.1rem;
+        --month-day-event-height: 0.9rem;
+        --month-day-event-fontsize : 12px;
+    }
+}
+
+@media (width >=80rem) { /** XL */
+    .month_day {
+        --month-day-font: var(--text-4xl);
+        --month-day-height: calc(var(--spacing)* 40);
+        --month-day-event-margin: calc(var(--spacing)* 2);
+        --month-day-event-height: 3rem;
+    }
+
+    .month {
+        --month-day-title-height: calc(var(--spacing)* 10);
+    }
+    .year .month_day {
+        --month-day-font: calc(var(--text-lg)* 0.8);
+        --month-day-height: calc(var(--spacing)* 10);
+        --month-day-event-margin: 0.02rem 0.1rem;
+        --month-day-event-height: 1rem;
+        --month-day-event-fontsize : 12px;
+    }
+}
+

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full">
+  <div class="nh-calendar w-full">
     <DavidUiNavBarSTicky />
     <main class="w-full">
       <div class="container">

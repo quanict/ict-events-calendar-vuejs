@@ -4,7 +4,6 @@ import lunar from '../lunar/lunar';
 let events : Array<CalendarEvent> = [];
 
 export const Holidays = [
-    { solar:"2025-01-01", title: "Tết Dương Lịch" },
     { solar:"2025-01-13", jp: true },
     { solar:"2025-01-25", title: "Tết Nguyên Đán" },
     { solar:"2025-01-26", title: "Tết Nguyên Đán" },
@@ -22,8 +21,6 @@ export const Holidays = [
     { solar:"2025-03-20", jp: true },
     { solar:"2025-04-29", jp: true },
     
-    
-    { solar:"2025-05-01", title: "Ngày Thống nhất đất nước" },
     { solar:"2025-05-02", title: "Ngày Thống nhất đất nước" },
     { solar:"2025-05-03", jp: true },
     { solar:"2025-05-04", jp: true },
@@ -35,7 +32,6 @@ export const Holidays = [
     
     { solar:"2025-08-11", jp: true },
     { solar:"2025-09-01", title: "Quốc Khánh" },
-    { solar:"2025-09-02", title: "Quốc Khánh" },
     { solar:"2025-09-15", jp: true },
     { solar:"2025-09-23", jp: true },
     { solar:"2025-10-13", jp: true },
