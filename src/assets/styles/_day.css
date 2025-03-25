@@ -1,0 +1,65 @@
+/**
+https://tailwindcss.com/docs/background-color
+ */
+.component-day {
+    display: flex;
+    justify-content: center;
+
+    .data {
+        @apply w-2xl border-1 ;
+
+    }
+
+    .year {
+        @apply bg-amber-600 text-white;
+        @apply text-2xl;
+        text-transform: capitalize;
+        display: block;
+        margin: 0;
+    }
+
+    .detail {
+        @apply grid grid-cols-2 md:grid-cols-2 mt-10;
+
+        .solar-day-of-week {
+            text-transform: capitalize;
+        }
+        
+        .solar-day-of-month,
+        .solar-day-of-week {
+            @apply col-span-2;
+            font-size: 3rem;
+        }
+
+        .solar-day-of-month {
+            font-size: 8rem;
+            font-weight: bold;
+        }
+
+
+        .lunar-day-month,
+        .lunar-day-detail {
+            @apply col-span-1;
+        }
+
+        .lunar-day-month {
+            .lunar-day-month-d {
+                font-size: 3rem;
+                
+            }
+        }
+        .lunar-day-detail {
+            label { 
+                @apply me-2;
+            }
+        }
+
+        .lunar-good-hours {
+            @apply col-span-2 mt-3 text-sm;
+            span {
+                @apply ms-2
+            }
+        }
+
+    }
+}

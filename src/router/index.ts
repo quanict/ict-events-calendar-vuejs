@@ -2,29 +2,16 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import YearView from '@/views/YearView.vue'
 import MonthView from '@/views/MonthView.vue'
+import DayView from '@/views/DayView.vue'
 
 const routes: Array<RouteRecordRaw> = [
-  {
-    path: '/',
-    name: 'year',
-    component: YearView
-  },
-  {
-    path: '/year', name: 'year-current',
-    component: YearView
-  },
-  {
-    path: '/year/:year', name: 'year',
-    component: YearView
-  },
-  {
-    path: '/month/',  name: 'month-current',
-    component: MonthView
-  },
-  {
-    path: '/month/:month', name: 'month',
-    component: () => import('../views/MonthView.vue')
-  }
+  { path: '/', name: 'home', component: YearView },
+  { path: '/year', name: 'year-current', component: YearView },
+  { path: '/year/:year', name: 'year', component: YearView },
+  { path: '/month/',  name: 'month-current', component: MonthView },
+  { path: '/month/:month', name: 'month', component: () => import('../views/MonthView.vue') },
+  { path: '/day',  name: 'day-current', component: DayView },
+  { path: '/day/:day',  name: 'day', component: DayView },
 ]
 
 const router = createRouter({

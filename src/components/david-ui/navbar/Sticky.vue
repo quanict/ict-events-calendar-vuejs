@@ -61,6 +61,7 @@ export default defineComponent({
       menus: [
         { "title": "Year", 'svg_icon': "files", route:"year-current" },
         { "title": "Month", 'svg_icon': "circle-user", route:"month-current" },
+        { "title": "Day", 'svg_icon': "box", route:"day-current" },
         { "title": "Blocks", 'svg_icon': "box" },
         { "title": "Docs", 'svg_icon': "print" },
       ],

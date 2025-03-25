@@ -4,16 +4,18 @@ export const CHI = ["Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "
 export const TUAN = ["Ch\u1EE7 nh\u1EADt", "Th\u1EE9 hai", "Th\u1EE9 ba", "Th\u1EE9 t\u01B0", "Th\u1EE9 n\u0103m", "Th\u1EE9 sáu", "Th\u1EE9 b\u1EA3y"];
 export const GIO_HD = ["110100101100", "001101001011", "110011010010", "101100110100", "001011001101", "010010110011"];
 export const DAY_OF_WEEK = ['chủ nhật', 'thứ hai', 'thứ ba', 'thứ tư', 'thứ năm', 'thứ sáu', 'thứ 7'];
-export const NGU_HANH = ["Kim", "Thủy", "Hỏa", "Thổ", "Mộc"];
+export const NGU_HANH = ["Kim", "Thủy", "Hỏa", "Thổ", "Mộc"]
 
 type MenhValue = {
     name: string;
     value: string;
-};
-export const MENH: MenhValue[] = [];
+}
 
-MENH.push({ name: 'Giáp Tý',	value: "Hải Trung Kim" });
-MENH.push({ name: 'Ất Sửu',     value: "Hải Trung Kim" });
+export const MENH: MenhValue[] = [
+	{ name: 'Giáp Tý',	value: "Hải Trung Kim" },
+	{ name: 'Ất Sửu',     value: "Hải Trung Kim" }
+]
+
 MENH.push({ name: 'Bính Dần',	value: "Lư Trung Hỏa" });
 MENH.push({ name: 'Đinh Mão',	value: "Lư Trung Hỏa" });
 MENH.push({ name: 'Mậu Thìn',	value: "Đại Lâm Mộc" });
