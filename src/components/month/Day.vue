@@ -4,4 +4,10 @@
 
 <script lang="ts">
 import { ref, PropType, defineComponent, defineProps } from 'vue';
+
+export default defineComponent({
+    components: {},
+    data(){
+    }
+})
 </script>

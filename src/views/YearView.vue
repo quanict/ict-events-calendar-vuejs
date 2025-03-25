@@ -1,6 +1,6 @@
 <template>
   <DavidUiLayout>
-    <div> this is year view</div>
+    <div class="text-3xl font-bold mt-10 ">{{ year }}</div>
 
     <div class="year">
       <template v-for="i in 12">
@@ -16,7 +16,7 @@ https://vi.vuejs.org/v2/style-guide/#Dat-ten-component-dung-nhieu-tu-thiet-yeu
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import DavidUiLayout from '@/layouts/DavidUiLayout.vue';
-import Month from "@/components/Month.vue"
+import Month from "@/components/month/Month.vue"
 import moment from 'moment';
 
 @Options({

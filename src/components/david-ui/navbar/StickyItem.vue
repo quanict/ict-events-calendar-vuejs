@@ -1,12 +1,20 @@
 <template>
     <li>
-        <a :href="menu?.href"
-            :class="link_class">
-            <svg viewBox="0 0 24 24" class="h-4 w-4">
-                <use :href="`#${icon}`" />
-            </svg>
-            {{ title }}
-        </a>
+      <RouterLink 
+      v-if="menu.route" 
+      :to="{name:menu.route}"
+      :class="link_class" >
+        <svg viewBox="0 0 24 24" class="h-4 w-4"><use :href="`#${icon}`" /></svg>
+        {{ title }}
+      </RouterLink>
+
+      <a v-else :href="menu?.href"
+          :class="link_class">
+          <svg viewBox="0 0 24 24" class="h-4 w-4">
+              <use :href="`#${icon}`" />
+          </svg>
+          {{ title }}
+      </a>
     </li>
 </template>
 <script lang="ts">
@@ -18,6 +26,7 @@ interface MenuItem {
     title: string
     svg_icon: string
     href?: string
+    route?: string
 }
 
 export default defineComponent({

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import YearView from '@/views/YearView.vue'
+import MonthView from '@/views/MonthView.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -9,14 +10,20 @@ const routes: Array<RouteRecordRaw> = [
     component: YearView
   },
   {
-    path: '/year',
-    name: 'year',
+    path: '/year', name: 'year-current',
     component: YearView
   },
   {
-    path: '/month',
-    name: 'month',
-    component: () => import(/* webpackChunkName: "about" */ '../views/MonthView.vue')
+    path: '/year/:year', name: 'year',
+    component: YearView
+  },
+  {
+    path: '/month/',  name: 'month-current',
+    component: MonthView
+  },
+  {
+    path: '/month/:month', name: 'month',
+    component: () => import('../views/MonthView.vue')
   }
 ]
 
