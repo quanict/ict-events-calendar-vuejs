@@ -36,7 +36,6 @@ https://tailwindcss.com/docs/background-color
             font-weight: bold;
         }
 
-
         .lunar-day-month,
         .lunar-day-detail {
             @apply col-span-1;

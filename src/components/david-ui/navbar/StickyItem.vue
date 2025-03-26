@@ -21,6 +21,7 @@
 
 import { ref,PropType, defineComponent, defineProps } from 'vue'
 import { useStore } from 'vuex';
+import {RouterLink} from "@/modules/vue-router"
 
 interface MenuItem {
     title: string
@@ -30,6 +31,10 @@ interface MenuItem {
 }
 
 export default defineComponent({
+  components:{
+    // RouterLink
+    RouterLink
+  },
     props: {
     menu: {
       type: Object as PropType<MenuItem>,
