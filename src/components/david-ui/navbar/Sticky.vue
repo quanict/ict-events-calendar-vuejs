@@ -1,9 +1,16 @@
 <template>
   <nav
-    class="rounded-lg border shadow-lg overflow-hidden p-2 bg-white border-stone-200 shadow-stone-950/5 sticky top-0 mx-auto w-full max-w-screen-xl mt-3 mb-3">
+    class="rounded-lg border shadow-lg overflow-hidden p-2 bg-white border-stone-200 shadow-stone-950/5 sticky top-0 mx-auto w-full max-w-screen-xl mt-3 mb-3"
+    style="z-index: 9;"
+    >
     <div class="flex items-center">
-      <a href="#" class="font-sans antialiased text-sm text-current ml-2 mr-2 block py-1 font-semibold">Material
-        Tailwind</a>
+
+      <RouterLink 
+      :to="{ name: 'home'}"
+      class="font-sans antialiased text-sm text-current ml-2 mr-2 block py-1 font-semibold" >
+      {{ app_name }}
+      </RouterLink>
+
       <hr class="ml-1 mr-1.5 hidden h-5 w-px border-l border-t-0 border-secondary-dark lg:block" />
       <div class="hidden lg:block">
         <ul class="mt-4 flex flex-col gap-x-3 gap-y-1.5 lg:mt-0 lg:flex-row lg:items-center">
@@ -45,25 +52,30 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import DavidUiStickyIcon from './StickyIcon.vue';
-import DavidUiStickyItem from './StickyItem.vue';
+import {RouterLink} from "@/router/vue-router"
+import DavidUiStickyIcon from './StickyIcon.vue'
+import DavidUiStickyItem from './StickyItem.vue'
+import {APP_NAME} from "@/configs/app"
 
 
-// export default class DavidUiNavBarSTicky extends Vue {}
 export default defineComponent({
   name: 'DavidUiNavBarSTicky',
   components: {
     DavidUiStickyIcon,
-    DavidUiStickyItem
+    DavidUiStickyItem,
+    RouterLink
   },
   data() {
     return {
       menus: [
-        { "title": "Year", 'svg_icon': "files", route:"year-current" },
-        { "title": "Month", 'svg_icon': "circle-user", route:"month-current" },
-        { "title": "Day", 'svg_icon': "box", route:"day-current" },
-        { "title": "Blocks", 'svg_icon': "box" },
-        { "title": "Docs", 'svg_icon': "print" },
+        { "title": "Year", 'svg_icon': "sun", route:"year.default" },
+        { "title": "Month", 'svg_icon': "moon", route:"month.default" },
+        { "title": "Day", 'svg_icon': "calendar", route:"day.default" },
+        // { "title": "User", 'svg_icon': "circle-user" },
+        // { "title": "Files", 'svg_icon': "files" },
+        // { "title": "User", 'svg_icon': "box" },
+        // { "title": "Blocks", 'svg_icon': "box" },
+        // { "title": "Docs", 'svg_icon': "print" },
       ],
       showSignIn: false,
       showMenu: false,
@@ -81,8 +93,10 @@ export default defineComponent({
     }
   },
   setup() {
-    return {
-    }
+    return {}
+  },
+  computed : {
+    app_name():string { return APP_NAME}
   }
 })
 </script>

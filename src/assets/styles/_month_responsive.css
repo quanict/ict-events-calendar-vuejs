@@ -18,6 +18,7 @@
     --month-day-event-height: 1rem;
     --month-day-event-fontsize : initial;
 }
+
 @media (width >=40rem) { /** SM */
 }
 @media (width >=48rem) { /** MD */

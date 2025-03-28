@@ -20,6 +20,7 @@ import Month from "@/components/month/Month.vue"
 import moment from 'moment';
 
 @Options({
+ 
   components: {
     DavidUiLayout,
     Month
@@ -35,6 +36,7 @@ import moment from 'moment';
 
   created(){
     this.year = moment().format('YYYY')
+    document.title = `year ${this.year}`
   },
 })
 export default class YearView extends Vue { }

@@ -21,7 +21,7 @@
 
 import { ref,PropType, defineComponent, defineProps } from 'vue'
 import { useStore } from 'vuex';
-import {RouterLink} from "@/modules/vue-router"
+import {RouterLink} from "@/router/vue-router"
 
 interface MenuItem {
     title: string

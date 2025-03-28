@@ -4,16 +4,13 @@
 </div>
 
 <div v-else-if="is_death_day" class="month_day_events month_day_mask_dead">
-    <template v-for="dayEvent in deaths">
-        <i class="fa-duotone fa-solid fa-universal-access" :title="dayEvent.title"></i>
-    </template>
+    <i v-for="dayEvent in deaths" class="fa-duotone fa-solid fa-universal-access" :title="dayEvent.title"></i>
 </div>
 
 <div v-else-if="is_holiday" class="month_day_events is_holiday">
-    <template v-for="dayEvent in holidays">
-        <i class="fa-duotone fa-solid fa-badge" :title="dayEvent.title"></i>
-    </template>
+    <i v-for="event in holidays" class="fa-duotone fa-solid fa-badge" :title="event.title"></i>
 </div>
+
 </template>
 
 <script lang="ts">
@@ -54,6 +51,14 @@ export default defineComponent({
             })
             return eventsDate
         },
+    },
+
+    computed:{
+        is_japan_holiday(): boolean {
+            let events = this.events;
+            events = events.filter((e: any) => e.jp === true && e.type === "holiday")
+            return events.length > 0;
+        },
 
         deaths(): any {
             const lunarDate: Lunar.LunarDate = toLunar(this.date);
@@ -65,25 +70,16 @@ export default defineComponent({
 
         },
 
-        holidays(i: number): any {
-            return this.events.filter((e: any) => e.type === "holiday")
-        }
-    },
-
-    computed:{
-        is_japan_holiday(): boolean {
-            let events = this.events;
-            events = events.filter((e: any) => e.jp === true && e.type === "holiday")
-            return events.length > 0;
-        },
-
         is_death_day(i: number): boolean {
-            const events = this.deaths()
-            return events.length > 0
+            return this.deaths.length > 0
         },
 
-        is_holiday(i: number): boolean {
-            return this.holidays(i).length > 0
+        holidays(): any {
+            return this.events.filter((e: any) => e.type === "holiday")
+        },
+
+        is_holiday(): boolean {
+            return this.holidays.length > 0
         },
     },
     watch: {

@@ -5,6 +5,12 @@
     @apply mx-auto w-sm xl:w-7xl lg:w-2xl;
 }
 
+@media only screen and (width <= 576px) { 
+    .container {
+        width: 90%;
+    }
+}
+
 @import "./_day.css";
 @import "./_year.css";
 @import "./_month.css";

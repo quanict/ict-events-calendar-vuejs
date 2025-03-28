@@ -45,6 +45,10 @@
         @apply border-gray-400 bg-gray-200; 
     }
 
+    &.is_today{
+        @apply  border-2 border-gray-500 bg-gray-200;
+    }
+
     .d-sonar {
         @apply absolute ;
         top: 0.2rem;
@@ -67,13 +71,12 @@
             @apply text-rose-200;
 
             .d-lunnar { 
-                
                 @apply  text-rose-500;
             }
         }
+       
     }
    
-
     .month_day_events {
         @apply align-text-bottom;
         width: 100%;
@@ -87,19 +90,20 @@
 
     }
     &:has(.is_japan){
-        @apply border-2;
-        @apply text-orange-400 border-orange-400;
+        @apply border-1 border-orange-200;
+        @apply text-orange-400 ;
 
     }
 
     &:has(.month_day_mask_dead){
-        @apply border-2;
-        @apply text-green-500 border-green-500;
+        @apply border-1 border-green-200;
+        @apply text-green-400 ;
     }
     &:has(.is_holiday){
-        @apply border-2;
-        @apply text-blue-600 border-blue-600;
+        @apply border-1 border-blue-200;
+        @apply text-blue-600 ;
     }
+   
     
 }
 

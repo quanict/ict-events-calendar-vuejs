@@ -147,6 +147,9 @@ export default defineComponent({
                 classes.push("monday_preview")
             }
 
+            if( date.isSame(new Date(), "day") ){
+                classes.push("is_today")
+            }
             return classes.join(' ')
         },
     },
