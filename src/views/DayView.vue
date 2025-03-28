@@ -64,7 +64,8 @@ export default defineComponent({
 		}
 	},
     created(){
-		const routeDate = this.$route.params.date
+        const routeDate = null;
+		// const routeDate = this.$route.params.date
 		if (routeDate) {
 			this.date = moment(routeDate, "YYYY-MM-DD").locale("vn")
 		} else {

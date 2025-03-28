@@ -43,7 +43,8 @@ export default defineComponent({
 
 	mounted() {},
 	created(){
-		const routeMonth = this.$route.params.month
+		const routeMonth = null;
+		// const routeMonth = this.$route.params.month
 		if (routeMonth) {
 			this.date = moment(routeMonth, "YYYY-MM")
 		} else {
@@ -53,7 +54,7 @@ export default defineComponent({
 
 	methods: {
 		push_route(): void {
-			this.$router.push({ name: `month`, params: { month: this.date.format("YYYY-MM") } })
+			// this.$router.push({ name: `month`, params: { month: this.date.format("YYYY-MM") } })
 		},
 		previous_year(): void {
 			this.date = this.date.clone().add(-1, "year")

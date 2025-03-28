@@ -14,7 +14,7 @@
       <hr class="ml-1 mr-1.5 hidden h-5 w-px border-l border-t-0 border-secondary-dark lg:block" />
       <div class="hidden lg:block">
         <ul class="mt-4 flex flex-col gap-x-3 gap-y-1.5 lg:mt-0 lg:flex-row lg:items-center">
-          <template v-for="menu, index in menus" v-bind:key="index">
+          <template v-for="menu, index in menu_items" v-bind:key="index">
             <DavidUiStickyItem :menu="menu" classes="p-1" />
           </template>
         </ul>
@@ -35,7 +35,7 @@
 
     <div class="overflow-hidden transition-[max-height] duration-300 ease-in-out" v-if="showMenu">
       <ul class="flex flex-col gap-0.5 mt-2">
-        <template v-for="menu, index in menus" v-bind:key="index">
+        <template v-for="menu, index in menu_items" v-bind:key="index">
           <DavidUiStickyItem :menu="menu" class="p-2 hover:bg-stone-100 rounded-md" />
         </template>
 
@@ -55,7 +55,7 @@ import { defineComponent } from 'vue'
 import {RouterLink} from "@/router/vue-router"
 import DavidUiStickyIcon from './StickyIcon.vue'
 import DavidUiStickyItem from './StickyItem.vue'
-import {APP_NAME} from "@/configs/app"
+import {APP_NAME, IS_CALANDER, IS_GALLERY} from "@/configs/app"
 
 
 export default defineComponent({
@@ -67,7 +67,7 @@ export default defineComponent({
   },
   data() {
     return {
-      menus: [
+      menuCalendar: [
         { "title": "Year", 'svg_icon': "sun", route:"year.default" },
         { "title": "Month", 'svg_icon': "moon", route:"month.default" },
         { "title": "Day", 'svg_icon': "calendar", route:"day.default" },
@@ -96,7 +96,13 @@ export default defineComponent({
     return {}
   },
   computed : {
-    app_name():string { return APP_NAME}
+    app_name():string { return APP_NAME},
+    menu_items() : any{
+      if( IS_CALANDER ){
+        return this.menuCalendar
+      }
+      return []
+    }
   }
 })
 </script>
