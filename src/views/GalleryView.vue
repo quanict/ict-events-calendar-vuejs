@@ -12,8 +12,9 @@
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import DavidUiLayout from '@/layouts/DavidUiLayout.vue';
-import { mapActions, mapGetters } from "vuex";
-
+import { mapActions, mapGetters, mapMutations } from "vuex";
+import {domain, paths} from "@/configs/nhat-minh"
+import { SET_DATE, FETCH_DIRS, GET_DAYS_CURRENT_DIR, SET_DIR_NAME, GET_PHOTO_DAY } from '@/services/store/photos.module';
 @Options({
 
     components: {
@@ -25,24 +26,35 @@ import { mapActions, mapGetters } from "vuex";
     //},
 
     data() {
+        return {}
     },
 
-    created() {
+    async created() {
         document.title = `Gallery`
-        // listPhotos()
+
+        this.date = "2024-10-24"
+        this.$store.commit(SET_DATE, this.date)
+        
+        // await this[SET_DIR_NAME](paths[0])
+        // await this[FETCH_DIRS]()
+        
+        const photos = this[GET_PHOTO_DAY]("2024-10-24");
+        // console.log(`===== debug create`, {photos})
     },
+
 
     computed: {
-        ...mapGetters(["listPhotos"]),
+        
         queryParam() {
             return this.$route.query;
         },
     },
 
-    getList() {
-    //   this.$http.get(api).then((response:any) => {
-    //     console.log(response.data)
-    //   })
+    methods : {
+        ...mapActions([FETCH_DIRS, SET_DIR_NAME, GET_PHOTO_DAY]),
+        ...mapGetters([GET_DAYS_CURRENT_DIR]),
+        ...mapMutations([]),
+        
     }
 })
 export default class YearView extends Vue { }
