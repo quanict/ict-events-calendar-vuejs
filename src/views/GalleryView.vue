@@ -1,54 +1,37 @@
 <template>
     <DavidUiLayout>
         <div class="text-3xl font-bold mt-10 ">Gallery</div>
-        <div class="gallery">
-            <Photo v-for="p in photos" :info="p" :path="dayUrl" />
-        </div>
+        <Photos :date="date" />
     </DavidUiLayout>
 </template>
 
 
 <script lang="ts">
-import { Options, Vue } from 'vue-class-component';
+import { defineComponent } from 'vue'
 import DavidUiLayout from '@/layouts/DavidUiLayout.vue';
-import { mapActions, mapGetters } from "vuex";
-import { GET_PHOTO_DAY, GET_PHOTOS_IN_DAY, GET_DAY_URL } from '@/services/store/photos.module';
-import Photo from "@/components/gallery/Photo.vue"
+import Photos from "@/components/gallery/Grid.vue"
+import GridMasonry from "@/components/gallery/GridMasonry.vue"
 
-@Options({
-
+/**
+ * https://www.creative-tim.com/david-ui/docs/html/gallery
+ */
+ export default defineComponent({
     components: {
         DavidUiLayout,
-        Photo
+        Photos,
+        GridMasonry
     },
-
+    computed: {},
+    methods : {},
     data() {
         return {
-            photos : []
+            date: ''
         }
     },
-
     async created() {
         document.title = `Gallery`
-        await this[GET_PHOTO_DAY]("2024-10-24");
-        this.photos = this[GET_PHOTOS_IN_DAY]()
+        this.date = "2024-10-24"
+       
     },
-
-
-    computed: {
-        queryParam() {
-            return this.$route.query;
-        },
-        dayUrl(){
-            return this[GET_DAY_URL]()
-        }
-    },
-
-    methods : {
-        ...mapActions([GET_PHOTO_DAY]),
-        ...mapGetters([GET_PHOTOS_IN_DAY, GET_DAY_URL]),
-        
-    }
 })
-export default class YearView extends Vue { }
 </script>

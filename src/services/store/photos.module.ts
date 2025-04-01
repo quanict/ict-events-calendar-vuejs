@@ -35,7 +35,11 @@ const getters = {
     },
 
     [GET_PHOTOS_IN_DAY](state:any){
-        return toRaw(state.photos[state.current_date.format("YYYY-MM-DD")])
+        const date = state.current_date.format("MMDD")
+        return {
+            path : `${domain}/${state.directory_name}`,
+            items: state.photos[state.current_date.format("YYYY-MM-DD")]
+        }
     }
 }
 

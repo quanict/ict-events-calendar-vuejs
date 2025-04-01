@@ -57,7 +57,9 @@ import DavidUiStickyIcon from './StickyIcon.vue'
 import DavidUiStickyItem from './StickyItem.vue'
 import {APP_NAME, IS_CALANDER, IS_GALLERY} from "@/configs/app"
 
-
+/**
+ * https://router.vuejs.org/guide/essentials/active-links.html
+ */
 export default defineComponent({
   name: 'DavidUiNavBarSTicky',
   components: {

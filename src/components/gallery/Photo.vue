@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img  :title="title" :src="thumbnail" />
+        <img :title="title" :src="thumbnail" class="object-cover object-center w-full h-80 max-w-full rounded-lg" />
     </div>
 </template>
 
@@ -18,13 +18,11 @@ export default defineComponent({
             type: String,
             default: "",
             // required: true,
-
         },
         info:{
             type : Object as PropType<PhotoJson>,
             default: undefined
         }
-       
     },
 
     data() {
