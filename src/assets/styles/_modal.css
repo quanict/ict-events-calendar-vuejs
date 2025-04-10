@@ -1,0 +1,26 @@
+.modal-container {
+    @apply fixed antialiased inset-0 bg-stone-800  flex justify-center items-center transition-opacity duration-300 ease-out z-[9999] opacity-0 pointer-events-none;
+    /* bg-opacity-75 */
+    &.modal-activated {
+        @apply opacity-100 pointer-events-auto;
+    }
+
+    .model-content {
+        @apply bg-white p-4 rounded-lg w-10/12 lg:w-8/12 scale-95 transition-transform duration-300 ease-out;
+        /* @apply max-h-[calc(100vh-5rem)] overflow-auto; */
+    }
+
+    .btn-favorite {
+        @apply inline-grid place-items-center border align-middle select-none font-sans font-medium text-center transition-all duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-sm min-w-[38px] min-h-[38px] rounded-md bg-transparent border-transparent text-red-500 hover:bg-red-500/5 hover:border-red-500/5 shadow-none hover:shadow-none;
+        &.d-none {
+            @apply hidden;
+        }
+    }
+    .btn-download {
+        @apply inline-flex items-center justify-center border align-middle select-none font-sans font-medium text-center duration-300 ease-in disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed focus:shadow-none text-sm py-2 px-4 shadow-sm hover:shadow-md bg-stone-200 hover:bg-stone-100 relative bg-gradient-to-b from-white to-white border-stone-200 text-stone-700 rounded-lg hover:bg-gradient-to-b hover:from-stone-50 hover:to-stone-50 hover:border-stone-200 after:absolute after:inset-0 after:rounded-[inherit] after:shadow-[inset_0_1px_0px_rgba(255,255,255,0.35),inset_0_-1px_0px_rgba(0,0,0,0.20)] after:pointer-events-none transition;
+        /* after:box-shadow  */
+        &.d-none {
+            @apply hidden;
+        }
+    }
+}

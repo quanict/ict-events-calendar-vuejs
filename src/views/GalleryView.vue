@@ -3,6 +3,7 @@
         <div class="text-3xl font-bold mt-10 ">Gallery</div>
         <Photos :date="date" />
     </DavidUiLayout>
+    <ModelPhoto />
 </template>
 
 
@@ -11,6 +12,7 @@ import { defineComponent } from 'vue'
 import DavidUiLayout from '@/layouts/DavidUiLayout.vue';
 import Photos from "@/components/gallery/Grid.vue"
 import GridMasonry from "@/components/gallery/GridMasonry.vue"
+import ModelPhoto from '@/components/gallery/Model.vue';
 
 /**
  * https://www.creative-tim.com/david-ui/docs/html/gallery
@@ -19,7 +21,8 @@ import GridMasonry from "@/components/gallery/GridMasonry.vue"
     components: {
         DavidUiLayout,
         Photos,
-        GridMasonry
+        GridMasonry,
+        ModelPhoto
     },
     computed: {},
     methods : {},

@@ -7,10 +7,7 @@
       </div>
     </main>
     <Icons />
-    <ModelPhoto show="1" />
   </div>
-
-
   
 </template>
 

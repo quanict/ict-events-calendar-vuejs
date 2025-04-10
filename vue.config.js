@@ -20,7 +20,7 @@ module.exports = defineConfig({
   devServer: {
     // open: process.platform === 'darwin',
     // host: '0.0.0.0',
-    port: 8081,
+    port: 8088,
     // https: false
     allowedHosts: "all",
   },
