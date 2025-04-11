@@ -1,0 +1,12 @@
+
+/**
+sm	40rem (640px)	@media (width >= 40rem) { ... }
+md	48rem (768px)	@media (width >= 48rem) { ... }
+lg	64rem (1024px)	@media (width >= 64rem) { ... }
+xl	80rem (1280px)	@media (width >= 80rem) { ... }
+2xl	96rem (1536px)	@media (width >= 96rem) { ... }
+*/
+.gallery {
+    @apply grid grid-cols-2 gap-4 ;
+    @apply sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8
+}

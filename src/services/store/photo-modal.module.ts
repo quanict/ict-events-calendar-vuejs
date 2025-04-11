@@ -7,7 +7,6 @@ export const GET_PHOTOS_IN_DAY = "getPhotoInDay"
 export const FETCH_DIRS = "fetchDirectories";
 export const FETCH_DIR = "fetchPhotosInDirectory";
 const PUSH_DIRS = "pushDirectories"
-export const SET_DIR_NAME = "setDirectoryName"
 const MUT_DIR_NAME = "storeDirectoryName"
 export const SET_DATE = "setDate"
 

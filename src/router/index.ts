@@ -16,7 +16,12 @@ if (IS_CALANDER) {
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL ?? '/'),
-  routes
+  routes,
+
+  scrollBehavior(to, from, savedPosition) {
+    // return false to prevent scrolling
+    return savedPosition || false
+  }
 })
 
 router.beforeEach((to, from, next) => {

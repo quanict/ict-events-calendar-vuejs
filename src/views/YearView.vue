@@ -20,7 +20,6 @@ import Month from "@/components/month/Month.vue"
 import moment from 'moment';
 
 @Options({
- 
   components: {
     DavidUiLayout,
     Month
@@ -31,7 +30,9 @@ import moment from 'moment';
   },
 
   data() {
-    year : 2024
+    return{
+      year : 2024
+    }
   },
 
   created(){
