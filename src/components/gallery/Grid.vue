@@ -26,6 +26,7 @@ import moment from "moment";
 
 /**
  * https://www.creative-tim.com/david-ui/docs/html/gallery
+ * https://vi.vuejs.org/v2/guide/instance
  */
 export default defineComponent({
     components: {},
