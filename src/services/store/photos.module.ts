@@ -22,7 +22,7 @@ export const HAS_NEXT_DAY = "has_next_day"
 export const PUSH_LOADED_DATE = "pushDateLoaded"
 export const HAS_LOADED_DATE = "hasDateLoaded"
 
-const getDirectoryByDay = (date: Moment|string) => {
+export const getDirectoryByDay = (date: Moment|string) => {
     if( typeof date === 'string'){
         date = moment(date, "YYYY-MM-DD")
     }

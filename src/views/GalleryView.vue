@@ -67,6 +67,10 @@ export default defineComponent({
         async getData(day : string ) {
             await this[GET_PHOTO_DAY](day);
             this.day_next = await this[HAS_NEXT_DAY](day)
+        },
+
+        handleScroll(e:any){
+            console.log(`==== handleScroll`, {e})
         }
     },
     data() {
@@ -94,7 +98,12 @@ export default defineComponent({
 
         this.days = []
         this.getData(day)
+        window.addEventListener('scroll', this.handleScroll);
+
         console.log(`======= GalleryView.created day=[${day}] day_next=${this.day_next}`)
+    },
+    unmounted () {
+        // window.removeEventListener('scroll', this.handleScroll);
     },
 })
 </script>
