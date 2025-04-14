@@ -3,7 +3,8 @@
         <div class="text-3xl font-bold mt-10 ">Gallery</div>
 
         <template v-if="not_loading">
-            <Photos v-show="hasNotDate(d)" v-for="d in days" :date="d" />
+            <!-- <Photos v-show="hasNotDate(d)" v-for="d in days" :date="d" /> -->
+            <Photos v-for="(photos_day, date) in all_photo" :date="date" :photos="photos_day"  />
         </template>
 
         <div v-if="day_next" class="item flex flex-wrap justify-center gap-4">
@@ -18,12 +19,18 @@
 import { defineComponent, ref } from 'vue'
 import { mapActions, mapGetters } from "vuex";
 import DavidUiLayout from '@/layouts/DavidUiLayout.vue';
-import Photos from "@/components/gallery/Grid.vue"
+import Photos from "@/components/gallery/Grid2.vue"
 import GridMasonry from "@/components/gallery/GridMasonry.vue"
 import ModelPhoto from '@/components/gallery/Model.vue';
-import { HAS_NEXT_DAY, GET_PHOTO_DAY, IS_LOADING, NOT_LOADING, HAS_LOADED_DATE } from '@/services/store/photos.module'
+import { HAS_NEXT_DAY, GET_PHOTO_DAY, IS_LOADING, NOT_LOADING, HAS_LOADED_DATE, GET_ALL_PHOTOS } from '@/services/store/photos.module'
 import { useRoute } from 'vue-router'
 
+interface PhotosDays {
+    "date": '',
+    "files" : []
+}
+
+const date_default = "2024-08-01"
 /**
  * https://www.creative-tim.com/david-ui/docs/html/gallery
  */
@@ -37,30 +44,35 @@ export default defineComponent({
     computed: {
         not_loading(): boolean { return this[NOT_LOADING]() },
         is_loading(): boolean { return this[IS_LOADING]() },
-
+        all_photo() : any {
+            const allData = this[GET_ALL_PHOTOS]()
+            return this[GET_ALL_PHOTOS]()
+        },
     },
     methods: {
-        ...mapActions([HAS_NEXT_DAY, GET_PHOTO_DAY, HAS_LOADED_DATE]),
-        ...mapGetters([IS_LOADING, NOT_LOADING]),
+        ...mapActions([HAS_NEXT_DAY, GET_PHOTO_DAY, HAS_LOADED_DATE ]),
+        ...mapGetters([IS_LOADING, NOT_LOADING, GET_ALL_PHOTOS]),
 
         async loadNextDay() {
-            console.warn(`======== clicked loadmore`)
             if (this.day_next === null) {
                 return
             }
-            this.days.push(this.day_next)
-            await this[GET_PHOTO_DAY](this.day_next);
-            this.day_next = await this[HAS_NEXT_DAY](this.day_next)
+            this.getData(this.day_next)
         },
 
         async hasNotDate(date: string) {
             let hasLoaded: any = await this[HAS_LOADED_DATE](date)
             return hasLoaded
         },
+        async getData(day : string ) {
+            await this[GET_PHOTO_DAY](day);
+            this.day_next = await this[HAS_NEXT_DAY](day)
+        }
     },
     data() {
         return {
-            days: ref<string[]>([]),
+            // days: ref<string[]>([]),
+            days: ref<PhotosDays[]>([]),
             date: '',
             day_next: ref<string | null>(''),
             day_previous: {},
@@ -71,23 +83,18 @@ export default defineComponent({
     },
 
     async created() {
-        console.log(`======= GalleryView.created`)
-
         const route = useRoute()
         const dayQuery = route.query.day
         let day: string
         if (!dayQuery || dayQuery.length < 10) {
-            day = "2024-10-24"
+            day = date_default
         } else {
             day = dayQuery as string
         }
 
-        console.log(`======= GalleryView.created day=[${day}]`)
-
         this.days = []
-        this.days.push(day)
-        await this[GET_PHOTO_DAY](day);
-        this.day_next = await this[HAS_NEXT_DAY](day)
+        this.getData(day)
+        console.log(`======= GalleryView.created day=[${day}] day_next=${this.day_next}`)
     },
 })
 </script>
