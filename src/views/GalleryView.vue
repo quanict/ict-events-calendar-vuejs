@@ -96,10 +96,15 @@ export default defineComponent({
             day = dayQuery as string
         }
 
+        const queryParams = new URLSearchParams(window.location.search);
+        const dateFromQuery = queryParams.get("date") 
+        if( dateFromQuery ){
+            day = dateFromQuery as string
+        }
+        
         this.days = []
         this.getData(day)
         window.addEventListener('scroll', this.handleScroll);
-
         console.log(`======= GalleryView.created day=[${day}] day_next=${this.day_next}`)
     },
     unmounted () {

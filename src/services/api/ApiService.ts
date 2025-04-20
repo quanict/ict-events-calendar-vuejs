@@ -1,4 +1,4 @@
-import { domain } from "@/configs/nhat-minh";
+import { PhotoDomain } from "@/configs/photos";
 import axios, {AxiosStatic} from "axios";
 import { ApiResponse } from "../types";
 
@@ -7,9 +7,8 @@ class ApiService {
     constructor() {
         // this.name = "Polygon";
         this.$axios = axios
-        this.$axios.defaults.baseURL = domain;
+        this.$axios.defaults.baseURL = PhotoDomain;
     }
-
 
     async get(url:string) : Promise<ApiResponse<null>> {
         let options = {}

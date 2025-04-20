@@ -1,7 +1,8 @@
 .DS_Store
 node_modules
 /dist
-
+/dist-nhat-anh
+/dist-nhat-minh
 
 # local env files
 .env.local

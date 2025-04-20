@@ -1,4 +1,7 @@
 import { paths as PhotoDirectories, domain } from "@/configs/nhat-minh";
+// import { paths as PhotoDirectories, domain } from "@/configs/nhat-anh";
+// import { PhotoDirectories, PhotoDomain as domain } from "@/configs/photos"
+
 import apiService from "../api/ApiService";
 import moment, { Moment } from "moment";
 
@@ -22,16 +25,29 @@ export const HAS_NEXT_DAY = "has_next_day"
 export const PUSH_LOADED_DATE = "pushDateLoaded"
 export const HAS_LOADED_DATE = "hasDateLoaded"
 
-export const getDirectoryByDay = (date: Moment|string) => {
-    if( typeof date === 'string'){
+export const getDirectoryByDay = (date: Moment | string) => {
+    if (typeof date === 'string') {
         date = moment(date, "YYYY-MM-DD")
     }
-    for (const [name, dateRange] of Object.entries(PhotoDirectories)) {
-        const start = moment(dateRange[0], "YYYY-MM-DD")
-        const end = moment(dateRange[1], "YYYY-MM-DD")
-        if (end.diff(date, 'days') >= 0 && date.diff(start, 'days') >= 0) {
-            return name
+    try{
+        for (const [name, dateRange] of Object.entries(PhotoDirectories)) {
+            // if (
+            //     dateRange instanceof Array !== true 
+            //     || typeof dateRange === 'undefined' 
+            //     || !dateRange  
+            // ) {
+            //     return
+            // }
+            
+
+            const start = moment(dateRange[0], "YYYY-MM-DD")
+            const end = moment(dateRange[1], "YYYY-MM-DD")
+            if (end.diff(date, 'days') >= 0 && date.diff(start, 'days') >= 0) {
+                return name
+            }
         }
+    } catch(e){
+        console.error(`=== got error`, {e})
     }
     return null
 }
@@ -151,8 +167,8 @@ const actions = {
             const photoDir = await getDirectoryByDay(date)
             //await context.commit(SET_DATE, dayStr)
 
-            if( photoDir === null){
-                console.warn(`==== can not get directory of day [${day}]`, {day, dayStr, photoDir})
+            if (photoDir === null) {
+                console.warn(`==== can not get directory of day [${day}]`, { day, dayStr, photoDir })
                 return
             }
 
@@ -170,7 +186,7 @@ const actions = {
 
             if (dirs[date.format("YYYY-MM-DD")] > 0) {
                 const files = `${photoDir}/${date.format("MMDD")}/files.json`
-                const response : any = await apiService.get(files)
+                const response: any = await apiService.get(files)
                 context.state.photos[date.format("YYYY-MM-DD")] = response.data.files
                 context.commit(PUSH_LOADED_DATE, date.format("YYYY-MM-DD"))
                 return response.data
@@ -183,9 +199,9 @@ const actions = {
     },
 
     async [HAS_NEXT_DAY](context: any, day: any) {
-        
+
         const photoDir = await getDirectoryByDay(day)
-        if( !photoDir ){
+        if (!photoDir) {
             return null
         }
         const directories = context.state.directories[photoDir];

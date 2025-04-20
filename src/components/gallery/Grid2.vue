@@ -2,9 +2,11 @@
   <div>
     <div class="border-1 border-solid text-left px-2 py-1">{{ date_format }}</div>
     <div class="gallery">
-      <div v-for="img in photos">
+      <div v-for="img in photos" class="gallery-item">
         <img class="object-cover object-center w-full h-40 max-w-full rounded-lg" :src="thumbPath(img)"
           :src2="realPath(img)" alt="gallery-photo" @click="clickPhotoHandler(img)" />
+        <div class="gallery-item-name">{{ filename(img) }}</div>
+        <div v-if="isVideo(img)" class="gallery-item-video-icon"><i class="fa-duotone fa-solid fa-circle-play"></i></div>
       </div>
     </div>
   </div>
@@ -12,10 +14,10 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { mapActions, mapGetters, mapMutations } from "vuex";
+import { mapActions } from "vuex";
 import { SET_PHOTO } from "@/services/store/photo-modal.module";
 import moment from "moment";
-import { domain } from "@/configs/nhat-minh";
+import { PhotoDomain } from "@/configs/photos";
 import { getDirectoryByDay } from "@/services/store/photos.module";
 
 /**
@@ -35,12 +37,8 @@ export default defineComponent({
   components: {},
   props: {
     date: { type: String, required: true },
-    photos: [],
+    photos: { type: Array },
   },
-  // setup(props:DayImageProps) {
-  //   console.log(`=====`, {props})
-  // },
-
   data() {
     return {
       img_dns: '',
@@ -48,7 +46,7 @@ export default defineComponent({
   },
   created() {
     const directory = getDirectoryByDay(this.date)
-    this.img_dns = `${domain}/${directory}`
+    this.img_dns = `${PhotoDomain}/${directory}`
   },
   // async updated() {},
   computed: {
@@ -58,21 +56,32 @@ export default defineComponent({
       }
       return moment(this.date, "YYYY-MM-DD").format("YYYY-MM-DD");
     },
+
   },
   methods: {
     ...mapActions([SET_PHOTO]),
-
+    clickPhotoHandler(photo: any) {
+      this[SET_PHOTO](photo);
+    },
     thumbPath(img: any) {
-      
+
       // return "/imgs/img.svg";
       return `${this.img_dns}/${img.thumbnail}`;
     },
     realPath(img: any) {
       return `/${img.file}`;
     },
-    clickPhotoHandler(photo: any) {
-      this[SET_PHOTO](photo);
+
+    filename(img: any): string {
+      var filename = img.file.replace(/^.*[\\/]/, '')
+      return filename
     },
+
+    isVideo(img: any): boolean {
+      const ext = img.file.split('.').pop().toLowerCase()
+      return ["mp4", "mov"].indexOf(ext) > -1
+    },
+
   },
   // watch: {
   //   status(newValue : any, oldValue:any) {

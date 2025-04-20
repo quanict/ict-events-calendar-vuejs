@@ -12,5 +12,28 @@ xl	80rem (1280px)	@media (width >= 80rem) { ... }
 .gallery {
     @apply mt-5; 
     @apply grid grid-cols-2 gap-4 ;
-    @apply sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8
+    @apply sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8;
+
+    .gallery-item {
+        position: relative;
+
+        .gallery-item-name {
+            position: absolute;
+            width: 100%;
+            margin-top: -24px;
+            color: white;
+        }
+
+        .gallery-item-video-icon {
+            position: absolute;
+            width: 100%;
+            color: black;
+            top: calc(50% - 24px);
+            font-size: 2rem;
+        }
+
+        &:has(.gallery-item-video-icon) img {
+            opacity: .7;
+        }
+    }
 }
