@@ -1,6 +1,8 @@
-import { paths as PhotoDirectories, domain } from "@/configs/nhat-minh";
+// import { paths as PhotoDirectories, domain } from "@/configs/nhat-minh";
 // import { paths as PhotoDirectories, domain } from "@/configs/nhat-anh";
-// import { PhotoDirectories, PhotoDomain as domain } from "@/configs/photos"
+
+import { PhotoDirectories, PhotoDomain as domain } from "@/configs/photos"
+import {YearDirectory, YearDirectories} from "@/configs/type"
 
 import apiService from "../api/ApiService";
 import moment, { Moment } from "moment";
@@ -30,20 +32,11 @@ export const getDirectoryByDay = (date: Moment | string) => {
         date = moment(date, "YYYY-MM-DD")
     }
     try{
-        for (const [name, dateRange] of Object.entries(PhotoDirectories)) {
-            // if (
-            //     dateRange instanceof Array !== true 
-            //     || typeof dateRange === 'undefined' 
-            //     || !dateRange  
-            // ) {
-            //     return
-            // }
-            
-
-            const start = moment(dateRange[0], "YYYY-MM-DD")
-            const end = moment(dateRange[1], "YYYY-MM-DD")
+        for (const [i, yearDirectory] of Object.entries(PhotoDirectories)) {
+            const start = moment(yearDirectory.range[0], "YYYY-MM-DD")
+            const end = moment(yearDirectory.range[1], "YYYY-MM-DD")
             if (end.diff(date, 'days') >= 0 && date.diff(start, 'days') >= 0) {
-                return name
+                return yearDirectory.path
             }
         }
     } catch(e){
@@ -84,7 +77,6 @@ const getters = {
             items: state.photos[state.current_date.format("YYYY-MM-DD")]
         }
     },
-
 }
 
 const mutations = {
@@ -100,9 +92,9 @@ const mutations = {
         console.log(`==== call mutations.SET_DATE`)
         try {
             state.current_date = moment(str, "YYYY-MM-DD")
-            for (const [name, dateRange] of Object.entries(PhotoDirectories)) {
-                const start = moment(dateRange[0], "YYYY-MM-DD")
-                const end = moment(dateRange[1], "YYYY-MM-DD")
+            for (const [i, yearDirectory] of Object.entries(PhotoDirectories)) {
+                const start = moment(yearDirectory.range[0], "YYYY-MM-DD")
+                const end = moment(yearDirectory.range[1], "YYYY-MM-DD")
                 if (end.diff(state.current_date, 'days') >= 0 && state.current_date.diff(start, 'days') >= 0) {
                     state.directory_name = name;
                 }
