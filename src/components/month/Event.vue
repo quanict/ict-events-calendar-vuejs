@@ -10,7 +10,9 @@
 <div v-else-if="is_holiday" class="month_day_events is_holiday">
     <i v-for="event in holidays" class="fa-duotone fa-solid fa-badge" :title="event.title"></i>
 </div>
-
+<div v-else-if="is_race_day" class="month_day_events is_racing">
+    <i v-for="event in raceDays" class="fa-duotone fa-solid fa-person-running" :title="event.title"></i>
+</div>
 </template>
 
 <script lang="ts">
@@ -32,12 +34,11 @@ export default defineComponent({
             type: String,
             default: ""
         },
-        
     },
 
     created(){
         this.events = this.getEvents(moment(this.date, "YYYY-MM-DD"))
-        // console.log(`======= get event of day`, this.date)
+        // console.log(`======= get event of day`, this.date, this.events)
     },
 
     methods:{
@@ -80,6 +81,17 @@ export default defineComponent({
 
         is_holiday(): boolean {
             return this.holidays.length > 0
+        },
+
+
+        raceDays(): any {
+            return this.events.filter((e: any) => e.type === "race")
+        },
+        is_race_day(): boolean {
+            if( this.date === "2025-04-27"){
+                console.log(`==== race day [${this.date}]`, this.raceDays, this.events, {events})
+            }
+            return this.raceDays.length > 0
         },
     },
     watch: {

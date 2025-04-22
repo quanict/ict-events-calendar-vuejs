@@ -1,4 +1,4 @@
-export const Events = [
+export default [
 {title:"Yên Tử Heritage Marathon 2025 - Giải chạy Yên tử \"Chạm vào vùng di sản\" 2025", date:"2025-11-15 11:38:00", type:"run"}, 
 {title:"Trang An Marathon 2025", date:"2025-11-09 04:00:00", type:"run"}, 
 {title:"VnExpress Marathon Hạ Long 2025", date:"2025-05-25 02:00:00", type:"run"}, 

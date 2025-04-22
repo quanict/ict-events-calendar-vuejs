@@ -48,7 +48,6 @@ export default defineComponent({
     const directory = getDirectoryByDay(this.date)
     this.img_dns = `${PhotoDomain}/${directory}`
   },
-  // async updated() {},
   computed: {
     date_format(): string {
       if (!this.date) {
@@ -64,8 +63,7 @@ export default defineComponent({
       this[SET_PHOTO](photo);
     },
     thumbPath(img: any) {
-
-      // return "/imgs/img.svg";
+      return "/imgs/img.svg";
       return `${this.img_dns}/${img.thumbnail}`;
     },
     realPath(img: any) {

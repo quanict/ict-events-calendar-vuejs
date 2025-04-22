@@ -2,6 +2,9 @@
 
 @import "./fontawesome.css";
 
+#app {
+    overflow: hidden;
+}
 .container {
     @apply mx-auto w-sm xl:w-7xl lg:w-2xl;
 }

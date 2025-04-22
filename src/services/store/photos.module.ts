@@ -1,6 +1,3 @@
-// import { paths as PhotoDirectories, domain } from "@/configs/nhat-minh";
-// import { paths as PhotoDirectories, domain } from "@/configs/nhat-anh";
-
 import { PhotoDirectories, PhotoDomain as domain } from "@/configs/photos"
 import {YearDirectory, YearDirectories} from "@/configs/type"
 

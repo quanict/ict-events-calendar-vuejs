@@ -4,19 +4,19 @@ import {YearDirectory, YearDirectories} from "./type"
 
 var PhotoDirectories : YearDirectories = []
 var PhotoDomain : string = ''
-
-
+var ObjectPaths;
 
 if( process.env.VUE_APP_BABY==="nhat-anh" ){
     PhotoDomain = NhatAnhDomain
-    for(const [name, dateRange] of Object.entries(NhatAnhPaths)){
-        PhotoDirectories.push({path: name, range: dateRange}) 
-    }
+    ObjectPaths = NhatAnhPaths;
 } else {
     PhotoDomain = NhatMinhDomain
-    for(const [name, dateRange] of Object.entries(NhatMinhPaths)){
-        PhotoDirectories.push({path: name, range: dateRange}) 
-    }
+    ObjectPaths = NhatMinhPaths
+}
+
+for(const [name, dateRange] of Object.entries(ObjectPaths)){
+    const photoDir : YearDirectory = {path: name, range: dateRange}
+    PhotoDirectories.push(photoDir) 
 }
 
 export {

@@ -8,12 +8,11 @@
         </template>
 
         <div v-if="day_next" class="item flex flex-wrap justify-center gap-4">
-            <button class="btn-outline" @click="loadNextDay">View More</button>
+            <a :href="day_next_href" class="btn-outline" @click="loadNextDay">View More</a>
         </div>
     </DavidUiLayout>
     <ModelPhoto />
 </template>
-
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
@@ -41,18 +40,24 @@ export default defineComponent({
         GridMasonry,
         ModelPhoto
     },
+    setup(){
+        
+    },
     computed: {
         not_loading(): boolean { return this[NOT_LOADING]() },
         is_loading(): boolean { return this[IS_LOADING]() },
         all_photo() : any {
-            const allData = this[GET_ALL_PHOTOS]()
             return this[GET_ALL_PHOTOS]()
+        },
+        day_next_href():string{
+            const route = useRoute()
+            return `${route.path}?date=${this.day_next}`
         },
     },
     methods: {
         ...mapActions([HAS_NEXT_DAY, GET_PHOTO_DAY, HAS_LOADED_DATE ]),
         ...mapGetters([IS_LOADING, NOT_LOADING, GET_ALL_PHOTOS]),
-
+        
         async loadNextDay() {
             if (this.day_next === null) {
                 return
@@ -70,14 +75,14 @@ export default defineComponent({
         },
 
         handleScroll(e:any){
-            console.log(`==== handleScroll`, {e})
+            // console.log(`==== handleScroll`, {e})
         }
     },
     data() {
         return {
             // days: ref<string[]>([]),
             days: ref<PhotosDays[]>([]),
-            date: '',
+            date: ref<string | null>(''),
             day_next: ref<string | null>(''),
             day_previous: {},
         }

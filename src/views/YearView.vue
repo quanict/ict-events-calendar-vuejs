@@ -62,7 +62,6 @@ export default defineComponent({
     this.year = moment().format('YYYY')
     document.title = `year ${this.year}`
     this.scrollToCurrent()
-
   },
 
   methods: {
