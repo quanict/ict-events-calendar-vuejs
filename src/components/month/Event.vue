@@ -1,18 +1,19 @@
 <template>
-<div v-if="is_japan_holiday" class="month_day_events is_japan">
-    <i class="fa-duotone fa-solid fa-flower" title="japan holiday"></i>
-</div>
+    <div v-if="is_japan_holiday" class="month_day_events is_japan">
+        <i class="fa-duotone fa-solid fa-flower" title="japan holiday"></i>
+    </div>
 
-<div v-else-if="is_death_day" class="month_day_events month_day_mask_dead">
-    <i v-for="dayEvent in deaths" class="fa-duotone fa-solid fa-universal-access" :title="dayEvent.title"></i>
-</div>
+    <div v-else-if="is_death_day" class="month_day_events month_day_mask_dead">
+        <i v-for="dayEvent in deaths" class="fa-duotone fa-solid fa-universal-access" :title="dayEvent.title"></i>
+    </div>
 
-<div v-else-if="is_holiday" class="month_day_events is_holiday">
-    <i v-for="event in holidays" class="fa-duotone fa-solid fa-badge" :title="event.title"></i>
-</div>
-<div v-else-if="is_race_day" class="month_day_events is_racing">
-    <i v-for="event in raceDays" class="fa-duotone fa-solid fa-person-running" :title="event.title"></i>
-</div>
+    <div v-else-if="is_holiday" class="month_day_events is_holiday">
+        <i v-for="event in holidays" class="fa-duotone fa-solid fa-badge" :title="event.title"></i>
+    </div>
+
+    <div v-else-if="is_race_day" class="month_day_events is_racing">
+        <i v-for="event in raceDays" class="fa-duotone fa-solid fa-person-running" :title="event.title"></i>
+    </div>
 </template>
 
 <script lang="ts">
@@ -24,7 +25,7 @@ import { events, lunar, Lunar, toLunar } from '@/libraries';
  */
 export default defineComponent({
     components: {},
-    data(){
+    data() {
         return {
             events: []
         }
@@ -36,25 +37,21 @@ export default defineComponent({
         },
     },
 
-    created(){
+    created() {
         this.events = this.getEvents(moment(this.date, "YYYY-MM-DD"))
-        // console.log(`======= get event of day`, this.date, this.events)
     },
 
-    methods:{
+    methods: {
         getEvents(day: Moment): any {
-            const lunarDate: Lunar.LunarDate = toLunar(day);
-            const lunarDateStr = lunarDate.format("YYYY-MM-DD")
-
             let eventsDate = events.filter((e) => {
                 if (e.solar === day.format("YYYY-MM-DD")) return true
-                if (e.lunar === lunarDateStr) return true
+                if (moment(e.lunar, "YYYY-MM-DD").format("MM-DD") === toLunar(day).format("MM-DD")) return true
             })
             return eventsDate
         },
     },
 
-    computed:{
+    computed: {
         is_japan_holiday(): boolean {
             let events = this.events;
             events = events.filter((e: any) => e.jp === true && e.type === "holiday")
@@ -62,11 +59,9 @@ export default defineComponent({
         },
 
         deaths(): any {
-            const lunarDate: Lunar.LunarDate = toLunar(this.date);
-            const lunarDateStr = lunarDate.format("YYYY-MM-DD")
             return events.filter((e) => {
                 if (!e.lunar) return false
-                if (e.lunar === lunarDateStr && e.deathDate === true) return true
+                if (moment(e.lunar, "YYYY-MM-DD").format("MM-DD") === toLunar(this.date).format("MM-DD") && e.deathDate === true) return true
             })
 
         },
@@ -88,8 +83,8 @@ export default defineComponent({
             return this.events.filter((e: any) => e.type === "race")
         },
         is_race_day(): boolean {
-            if( this.date === "2025-04-27"){
-                console.log(`==== race day [${this.date}]`, this.raceDays, this.events, {events})
+            if (this.date === "2025-04-27") {
+                console.log(`==== race day [${this.date}]`, this.raceDays, this.events, { events })
             }
             return this.raceDays.length > 0
         },
