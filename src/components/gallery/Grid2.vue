@@ -7,6 +7,7 @@
           :src2="realPath(img)" alt="gallery-photo" @click="clickPhotoHandler(img)" />
         <div class="gallery-item-name">{{ filename(img) }}</div>
         <div v-if="isVideo(img)" class="gallery-item-video-icon"><i class="fa-duotone fa-solid fa-circle-play"></i></div>
+        <div v-if="isYoutube(img)" class="gallery-item-youtube-icon"><i class="fa-brands fa-youtube"></i></div>
       </div>
     </div>
   </div>
@@ -63,8 +64,11 @@ export default defineComponent({
       this[SET_PHOTO](photo);
     },
     thumbPath(img: any) {
-      return "/imgs/img.svg";
-      return `${this.img_dns}/${img.thumbnail}`;
+      // return "/imgs/img.svg";
+      if (this.isYoutube(img)) {
+        return img.thumbnail
+      }
+      return `${this.img_dns}/${img.thumbnail}`
     },
     realPath(img: any) {
       return `/${img.file}`;
@@ -78,6 +82,21 @@ export default defineComponent({
     isVideo(img: any): boolean {
       const ext = img.file.split('.').pop().toLowerCase()
       return ["mp4", "mov"].indexOf(ext) > -1
+    },
+
+    isYoutube(img: any): boolean {
+
+      let regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
+      let match = img.file.match(regExp);
+      if (match && match[2].length == 11) {
+        return true
+      }
+
+      if (img.file.includes("youtube.com")) {
+        return true
+      }
+      
+      return false
     },
 
   },

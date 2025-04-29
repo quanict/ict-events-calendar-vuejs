@@ -1,4 +1,3 @@
-
 /**
 https://tailwindcss.com/docs/columns
 
@@ -10,8 +9,8 @@ xl	80rem (1280px)	@media (width >= 80rem) { ... }
 */
 
 .gallery {
-    @apply mt-5; 
-    @apply grid grid-cols-2 gap-4 ;
+    @apply mt-5;
+    @apply grid grid-cols-2 gap-4;
     @apply sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8;
 
     .gallery-item {
@@ -20,8 +19,12 @@ xl	80rem (1280px)	@media (width >= 80rem) { ... }
         .gallery-item-name {
             position: absolute;
             width: 100%;
-            margin-top: -24px;
+            margin-top: -17px;
             color: white;
+            font-size: .6rem;
+            text-align: left;
+            margin-left: 4px;
+            background: linear-gradient(0deg, #000000bf 0, rgba(42, 44, 49, 0) 76%);
         }
 
         .gallery-item-video-icon {
@@ -32,8 +35,22 @@ xl	80rem (1280px)	@media (width >= 80rem) { ... }
             font-size: 2rem;
         }
 
-        &:has(.gallery-item-video-icon) img {
-            opacity: .7;
+        .gallery-item-youtube-icon {
+            position: absolute;
+            width: 100%;
+            color: black;
+            top: calc(50% - 24px);
+            font-size: 2rem;
+
+            .fa-youtube {
+                color: #FF0000;
+            }
+        }
+
+        &:has(.gallery-item-video-icon) {
+            img {
+                opacity: .7;
+            }
         }
     }
 }

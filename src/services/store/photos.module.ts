@@ -1,5 +1,5 @@
 import { PhotoDirectories, PhotoDomain as domain } from "@/configs/photos"
-import {YearDirectory, YearDirectories} from "@/configs/type"
+import {SET_MESSAGE} from "./notification.module";
 
 import apiService from "../api/ApiService";
 import moment, { Moment } from "moment";
@@ -179,6 +179,14 @@ const actions = {
                 context.state.photos[date.format("YYYY-MM-DD")] = response.data.files
                 context.commit(PUSH_LOADED_DATE, date.format("YYYY-MM-DD"))
                 return response.data
+            } else {
+                context.commit(SET_MESSAGE, `not found data in DIRECTORIES [${date.format("YYYY-MM-DD")}]`)
+                const files = `${photoDir}/${date.format("MMDD")}/files.json`
+                const response: any = await apiService.get(files)
+                context.state.photos[date.format("YYYY-MM-DD")] = response.data.files
+                context.commit(PUSH_LOADED_DATE, date.format("YYYY-MM-DD"))
+                return response.data
+                console.warn(`==== not found data in directories`)
             }
             return null
         } catch (e) {
