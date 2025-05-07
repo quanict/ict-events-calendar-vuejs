@@ -1,6 +1,8 @@
-import YearView from '@/views/YearView.vue'
-import MonthView from '@/views/MonthView.vue'
-import DayView from '@/views/DayView.vue'
+import YearView from '@/views/pages/YearView.vue'
+import MonthView from '@/views/pages/MonthView.vue'
+import DayView from '@/views/pages/DayView.vue'
+import EventPage from '@/views/pages/EventPage.vue'
+
 
 export default [
     { path: '/', name: 'home', redirect: { name: 'year.default' }  },
@@ -12,7 +14,6 @@ export default [
         children: [
             { path: '/:year', component: YearView, name: 'year' },
         ]
-
     },
     { 
         path: '/month',  name: 'month.default', component: MonthView ,
@@ -28,5 +29,8 @@ export default [
         children: [
             { path: '/:day', component: DayView, name: 'day' },
         ]
+    },
+    { 
+        path: '/events',  name: 'event.items', component: EventPage,
     },
 ] 

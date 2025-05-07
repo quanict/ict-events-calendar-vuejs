@@ -17,9 +17,9 @@
 https://www.creative-tim.com/david-ui/docs/html/navbar
 */
 import { Vue, Options } from 'vue-class-component';
-import DavidUiNavBarSTicky from '@/components/david-ui/navbar/Sticky.vue';
-import Icons from '@/components/Icons.vue';
-import ModelPhoto from '@/components/gallery/Model.vue';
+import DavidUiNavBarSTicky from '@/views/components/david-ui/navbar/Sticky.vue';
+import Icons from '@/views/components/Icons.vue';
+import ModelPhoto from '@/views/components/gallery/Model.vue';
 
 @Options({
   components: {

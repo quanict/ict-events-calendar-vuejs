@@ -1,4 +1,4 @@
-import GalleryView from '@/views/GalleryView.vue'
+import GalleryView from '@/views/pages/GalleryView.vue'
 
 export default [
     { path: '/', name: 'home', redirect: { name: 'gallery.default' } },

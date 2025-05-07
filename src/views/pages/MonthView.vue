@@ -25,9 +25,9 @@ https://vuejs.org/guide/introduction.html
 */
 <script lang="ts">
 import { ref, PropType, defineComponent, defineProps } from 'vue'
-import DavidUiLayout from '@/layouts/DavidUiLayout.vue';
+import DavidUiLayout from '@/views/layouts/DavidUiLayout.vue';
 import moment, { Moment } from "moment";
-import Month from "@/components/month/Month.vue"
+import Month from "@/views/components/month/Month.vue"
 
 export default defineComponent({
 	components: {

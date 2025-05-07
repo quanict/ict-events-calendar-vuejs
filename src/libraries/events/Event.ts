@@ -14,5 +14,6 @@ type CalendarEvent = {
     holiday?: boolean,
     offset?:boolean
     jp?: boolean,
+    solar_date?:Date
     
 };

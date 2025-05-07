@@ -28,8 +28,8 @@ https://vi.vuejs.org/v2/style-guide/#Dat-ten-component-dung-nhieu-tu-thiet-yeu
 */
 <script lang="ts">
 import { defineComponent, ref, useTemplateRef } from 'vue';
-import DavidUiLayout from '@/layouts/DavidUiLayout.vue';
-import Month from "@/components/month/Month.vue"
+import DavidUiLayout from '@/views/layouts/DavidUiLayout.vue';
+import Month from "@/views/components/month/Month.vue"
 import moment, { Moment } from 'moment';
 
 /**

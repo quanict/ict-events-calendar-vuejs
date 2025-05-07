@@ -73,6 +73,7 @@ export default defineComponent({
         { "title": "Year", 'svg_icon': "sun", route:"year.default" },
         { "title": "Month", 'svg_icon': "moon", route:"month.default" },
         { "title": "Day", 'svg_icon': "calendar", route:"day.default" },
+        { "title": "Events", 'svg_icon': "event", route:"event.items" },
         // { "title": "User", 'svg_icon': "circle-user" },
         // { "title": "Files", 'svg_icon': "files" },
         // { "title": "User", 'svg_icon': "box" },

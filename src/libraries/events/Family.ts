@@ -57,6 +57,7 @@ Family.map((human)=>{
     row.date = lunar(parseInt(date.format('D')), parseInt(date.format('M')));
     row.eventName = `Dỗ cụ [${human.title}] (${human.lunar})`;
     row.deathDate = true;
+    row.solar_date = row.date.solar
     events.push(row);
     return true;
 });

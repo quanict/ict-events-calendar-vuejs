@@ -42,6 +42,7 @@ Holidays.map((event)=>{
     if( row.solar ){
         row.solar = row.solar.replace("YEAR", year).replace("MONTH", month);
         row.date = moment(row.solar);
+        row.solar_date = row.date.toDate()
         events.push(row); return true;
     }
 
@@ -49,6 +50,7 @@ Holidays.map((event)=>{
         row.lunar = row.lunar.replace("YEAR", year).replace("MONTH", month);
         const date = moment(row.lunar);
         row.date = lunar(parseInt(date.format('D')), parseInt(date.format('M')));
+        row.solar_date = row.date.solar
         events.push(row); return true;
     }
     return true;

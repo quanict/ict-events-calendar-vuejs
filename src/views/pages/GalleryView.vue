@@ -18,10 +18,10 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import { mapActions, mapGetters } from "vuex";
-import DavidUiLayout from '@/layouts/DavidUiLayout.vue';
-import Photos from "@/components/gallery/Grid2.vue"
-import GridMasonry from "@/components/gallery/GridMasonry.vue"
-import ModelPhoto from '@/components/gallery/Model.vue';
+import DavidUiLayout from '@/views/layouts/DavidUiLayout.vue';
+import Photos from "@/views/components/gallery/Grid2.vue"
+import GridMasonry from "@/views/components/gallery/GridMasonry.vue"
+import ModelPhoto from '@/views/components/gallery/Model.vue';
 import { HAS_NEXT_DAY, GET_PHOTO_DAY, IS_LOADING, NOT_LOADING, HAS_LOADED_DATE, GET_ALL_PHOTOS } from '@/services/store/photos.module'
 import {GET_MESSAGE} from '@/services/store/notification.module'
 import { useRoute } from 'vue-router'

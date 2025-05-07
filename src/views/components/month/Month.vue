@@ -26,7 +26,7 @@ https://vuejs.org/guide/introduction.html
 import { ref, PropType, defineComponent, defineProps } from 'vue'
 import moment, { Moment } from "moment";
 import { Lunar, toLunar } from '@/libraries';
-import Event from "@/components/month/Event.vue"
+import Event from "@/views/components/month/Event.vue"
 /**
  * https://momentjs.com/docs/#/displaying/
  */
