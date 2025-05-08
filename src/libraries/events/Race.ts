@@ -10,7 +10,7 @@ Events.map((event) => {
     row.type = "race";
     row.solar = date.format("YYYY-MM-DD");
     row.solar_date = date.toDate()
-
+    row.info = {}
     events.push(row); 
     return true;
 });

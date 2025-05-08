@@ -83,9 +83,7 @@ export default defineComponent({
             return this.events.filter((e: any) => e.type === "race")
         },
         is_race_day(): boolean {
-            if (this.date === "2025-04-27") {
-                console.log(`==== race day [${this.date}]`, this.raceDays, this.events, { events })
-            }
+            
             return this.raceDays.length > 0
         },
     },

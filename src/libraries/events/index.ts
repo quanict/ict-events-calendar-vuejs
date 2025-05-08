@@ -16,18 +16,10 @@ let events =  [
 ];
 
 events = events.sort((a:CalendarEvent, b:CalendarEvent) => {
-    
-    
     if( !a.solar_date || !b.solar_date)
         return 0
     
-    const test = a.solar_date > b.solar_date
-    // console.log(`==== debu sort compare=${test}`, {a,b}, a.solar_date, b.solar_date)
-
-    if (a.solar_date > b.solar_date) 
-        return 1;
-
-    return 0;
+    return a.solar_date.getTime() - b.solar_date.getTime() 
 });
 
 export default events;

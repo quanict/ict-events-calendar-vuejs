@@ -58,6 +58,7 @@ Family.map((human)=>{
     row.eventName = `Dỗ cụ [${human.title}] (${human.lunar})`;
     row.deathDate = true;
     row.solar_date = row.date.solar
+    row.solar = moment(row.date.solar).format("YYYY-MM-DD");
     events.push(row);
     return true;
 });

@@ -77,7 +77,6 @@ export default defineComponent({
       setTimeout(function () {
         const monthRef = `month-${moment().format("YYYY-M")}`
         const currentMonth = document.getElementById(monthRef)
-        console.log(`=== find month`, { currentMonth, monthRef })
         if (currentMonth) {
           currentMonth.scrollIntoView({ behavior: "smooth"})
         }

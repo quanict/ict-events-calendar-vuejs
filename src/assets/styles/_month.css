@@ -35,7 +35,6 @@
     }
 }
 
-
 .month_day {
 	@apply border-1 border-white p-1 h-15 align-text-top text-left relative;
     font-size: var(--month-day-font);
