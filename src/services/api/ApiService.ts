@@ -8,6 +8,10 @@ class ApiService {
         // this.name = "Polygon";
         this.$axios = axios
         this.$axios.defaults.baseURL = PhotoDomain;
+        this.$axios.defaults.withCredentials = true; 
+        this.$axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
+
+
     }
 
     async get(url:string) : Promise<ApiResponse<null>> {

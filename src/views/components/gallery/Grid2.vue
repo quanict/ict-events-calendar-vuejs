@@ -47,7 +47,7 @@ export default defineComponent({
   },
   created() {
     const directory = getDirectoryByDay(this.date)
-    this.img_dns = `${PhotoDomain}/${directory}`
+    this.img_dns = PhotoDomain==="/" ? `/${directory}` : `${PhotoDomain}/${directory}`
   },
   computed: {
     date_format(): string {
@@ -56,7 +56,6 @@ export default defineComponent({
       }
       return moment(this.date, "YYYY-MM-DD").format("YYYY-MM-DD");
     },
-
   },
   methods: {
     ...mapActions([SET_PHOTO]),
