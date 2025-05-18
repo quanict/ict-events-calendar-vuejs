@@ -5,7 +5,7 @@
 
         <template v-if="not_loading">
             <!-- <Photos v-show="hasNotDate(d)" v-for="d in days" :date="d" /> -->
-            <Photos v-for="(photos_day, date) in all_photo" :date="date" :photos="photos_day"  />
+            <Grid2 v-for="(photos_day, date) in all_photo" :date="date" :photos="photos_day"  />
         </template>
 
         <div v-if="day_next" class="item flex flex-wrap justify-center gap-4 mt-5">
@@ -19,7 +19,7 @@
 import { defineComponent, ref } from 'vue'
 import { mapActions, mapGetters } from "vuex";
 import DavidUiLayout from '@/views/layouts/DavidUiLayout.vue';
-import Photos from "@/views/components/gallery/Grid2.vue"
+import Grid2 from "@/views/components/gallery/Grid2.vue"
 import GridMasonry from "@/views/components/gallery/GridMasonry.vue"
 import ModelPhoto from '@/views/components/gallery/Model.vue';
 import { HAS_NEXT_DAY, GET_PHOTO_DAY, IS_LOADING, NOT_LOADING, HAS_LOADED_DATE, GET_ALL_PHOTOS } from '@/services/store/photos.module'
@@ -38,9 +38,18 @@ const date_default = "2024-08-01"
 export default defineComponent({
     components: {
         DavidUiLayout,
-        Photos,
+        Grid2,
         GridMasonry,
         ModelPhoto
+    },
+    data() {
+        return {
+            // days: ref<string[]>([]),
+            days: ref<PhotosDays[]>([]),
+            date: ref<string | null>(''),
+            day_next: ref<string | null>(''),
+            day_previous: {},
+        }
     },
     setup(){
         
@@ -82,15 +91,7 @@ export default defineComponent({
             // console.log(`==== handleScroll`, {e})
         }
     },
-    data() {
-        return {
-            // days: ref<string[]>([]),
-            days: ref<PhotosDays[]>([]),
-            date: ref<string | null>(''),
-            day_next: ref<string | null>(''),
-            day_previous: {},
-        }
-    },
+    
     async mounted() {
         document.title = `${process.env.VUE_APP_BABY}`
     },

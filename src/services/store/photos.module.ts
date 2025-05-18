@@ -190,7 +190,7 @@ const actions = {
             }
             return null
         } catch (e) {
-            console.error(`=== GET_PHOTO_DAY got exception`, { e })
+            console.error(`=== GET_PHOTO_DAY got exception`, { e, day })
         }
         return false
     },
