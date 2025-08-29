@@ -9,19 +9,20 @@ class ApiService {
         this.$axios = axios
         this.$axios.defaults.baseURL = PhotoDomain;
         this.$axios.defaults.withCredentials = true; 
-        this.$axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
+        // this.$axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
 
 
     }
 
     async get(url:string) : Promise<ApiResponse<null>> {
-        let options = {}
+        let options = {withCredentials: true}
         
         try {
             return await this.$axios.get(url, options);
         } catch (error) {
             console.log(error);
         }
+
         return new Promise((resolve, reject) => {
             resolve({success: false, data: null});
         })

@@ -31,7 +31,7 @@ interface PhotosDays {
     "files" : []
 }
 
-const date_default = "2024-08-01"
+const date_default = "2025-08-01"
 /**
  * https://www.creative-tim.com/david-ui/docs/html/gallery
  */
@@ -54,6 +54,7 @@ export default defineComponent({
     setup(){
         
     },
+
     computed: {
         ...mapGetters([GET_MESSAGE]),
         not_loading(): boolean { return this[NOT_LOADING]() },

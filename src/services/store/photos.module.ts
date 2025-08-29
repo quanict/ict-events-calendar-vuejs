@@ -163,10 +163,8 @@ const actions = {
 
             let dirs = context.state.directories[photoDir]
             if (!dirs) {
-                // await context.dispatch(FETCH_DIRS)
                 const response = await apiService.get(`${photoDir}/all.json`)
                 context.state.directories[photoDir] = response.data;
-                // await context.commit(PUSH_DIRS, photoDir, response.data);
             }
 
             dirs = context.state.directories[photoDir]
