@@ -20,7 +20,7 @@ class ApiService {
         try {
             return await this.$axios.get(url, options);
         } catch (error) {
-            console.log(error);
+            console.log(error, url);
         }
 
         return new Promise((resolve, reject) => {
