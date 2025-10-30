@@ -5,11 +5,11 @@
 
         <template v-if="not_loading">
             <!-- <Photos v-show="hasNotDate(d)" v-for="d in days" :date="d" /> -->
-            <Grid2 v-for="(photos_day, date) in all_photo" :date="date" :photos="photos_day"  />
+            <Grid2 v-for="(photos_day, date) in all_photo" :date="String(date)" :photos="photos_day"  />
         </template>
 
         <div v-if="day_next" class="item flex flex-wrap justify-center gap-4 mt-5">
-            <a :href="day_next_href" class="btn-outline" @click="loadNextDay">View More</a>
+            <a :href="day_next_href" target="_blank" class="btn-outline" @click="loadNextDay">View More</a>
         </div>
     </DavidUiLayout>
     <ModelPhoto />
@@ -25,13 +25,13 @@ import ModelPhoto from '@/views/components/gallery/Model.vue';
 import { HAS_NEXT_DAY, GET_PHOTO_DAY, IS_LOADING, NOT_LOADING, HAS_LOADED_DATE, GET_ALL_PHOTOS } from '@/services/store/photos.module'
 import {GET_MESSAGE} from '@/services/store/notification.module'
 import { useRoute } from 'vue-router'
+import moment from 'moment';
 
 interface PhotosDays {
     "date": '',
     "files" : []
 }
 
-const date_default = "2025-08-01"
 /**
  * https://www.creative-tim.com/david-ui/docs/html/gallery
  */
@@ -103,7 +103,7 @@ export default defineComponent({
         const dayQuery = route.query.day
         let day: string
         if (!dayQuery || dayQuery.length < 10) {
-            day = date_default
+            day = moment().format('YYYY-MM-DD')
         } else {
             day = dayQuery as string
         }

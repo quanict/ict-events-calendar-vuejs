@@ -3,11 +3,13 @@ import {SET_MESSAGE} from "./notification.module";
 
 import apiService from "../api/ApiService";
 import moment, { Moment } from "moment";
+import { ApiResponse } from "../types";
 
 export const IS_LOADING = "isLoading"
 export const NOT_LOADING = "isNotLoading"
 export const GET_DAY_URL = "getDayURL"
 export const GET_PHOTO_DAY = "getPhotosDay";
+export const GET_PHOTO_DAY_DEFAULT = "getPhotosDayDefault";
 export const GET_PHOTOS = "getListPhotos";
 export const GET_PHOTOS_IN_DAY = "getPhotoInDay"
 export const GET_ALL_PHOTOS = "getAllPhotos"
@@ -128,6 +130,21 @@ const actions = {
         context.commit(MUT_DIR_NAME, name)
     },
 
+    async [GET_PHOTO_DAY_DEFAULT](context: any) {
+        const dirctory = context.state.directories
+        const lastYearDir = Object.keys(context.state.directories).pop()
+        if( lastYearDir ){
+            const lastDayDir = Object.keys(context.state.directories[lastYearDir]).pop()
+            const files = `${lastYearDir}/${lastDayDir}/files.json`
+            const date = moment(lastDayDir, "MMDD")
+
+
+            console.log(`==== GET_PHOTO_DAY_DEFAULT`, { dirctory,  lastDayDir, files })   
+            const response: any = await apiService.get(files)
+            context.state.photos[date.format("YYYY-MM-DD")] = response.data.files
+            context.commit(PUSH_LOADED_DATE, date.format("YYYY-MM-DD")) 
+        }
+    },
     async [GET_PHOTO_DAY](context: any, day: string) {
         try {
             if (context.state.isLoading === true) {
@@ -163,7 +180,7 @@ const actions = {
 
             let dirs = context.state.directories[photoDir]
             if (!dirs) {
-                const response = await apiService.get(`${photoDir}/all.json`)
+                let response = await apiService.get(`${photoDir}/all.json`)
                 context.state.directories[photoDir] = response.data;
             }
 
@@ -188,7 +205,11 @@ const actions = {
             }
             return null
         } catch (e) {
-            console.error(`=== GET_PHOTO_DAY got exception`, { e, day })
+            // await this[GET_PHOTO_DAY_DEFAULT](context)
+            
+            console.error(`=== GET_PHOTO_DAY got exception`, { e, day, context })
+            context.dispatch(GET_PHOTO_DAY_DEFAULT)
+            // dispatch(GET_PHOTO_DAY_DEFAULT)
         }
         return false
     },
